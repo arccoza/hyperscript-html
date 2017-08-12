@@ -4,14 +4,30 @@ var printd = console.dir.bind(console)
 
 function HyperScript({tab='\t', tagFmt=null}={}) {
   return function hyperscript(type, attrs, ...children) {
-    shorthand(type)
+    attrs = attrs || {}
+    attrs.class = attrs.class || []
     children = Array.isArray(children[0]) ? children[0] : children
+
+    if (typeof type === 'string') {
+      var sh = shorthand(type)
+
+      type = sh.tag
+
+      if (sh.attrs.class)
+        attrs.class = [...new Set([...sh.attrs.class, ...attrs.class])]
+
+      if (sh.attrs.style)
+        attrs.style = {...sh.attrs.style, ...attrs.style}
+
+      attrs = {...sh.attrs, ...attrs}
+    }
+
     var el = []
 
     el.push(`<${type}`)
 
     for (let [k, v] of iter(attrs))
-      el.push(` ${k}="${v}"`)
+      el.push(` ${k}="${k == 'class' ? v.join('.') : k == 'style' ? toStyleStr(v) : v}"`)
 
     el.push(`>\n${tab}`)
 
@@ -88,6 +104,6 @@ var h = HyperScript()
 //   var html = h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
 // print(process.hrtime(start))
 
-var html = h('div#bob.a.b.c[type=awe][style=background:red;]', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
+var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
 
 print(html)
