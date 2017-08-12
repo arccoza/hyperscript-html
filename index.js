@@ -8,6 +8,7 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
     attrs.class = attrs.class || []
     children = Array.isArray(children[0]) ? children[0] : children
 
+    // Merge all attrs from selector str and 2nd arg obj.
     if (typeof type === 'string') {
       var sh = shorthand(type)
 
