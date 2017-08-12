@@ -59,7 +59,7 @@ function shorthand(tag) {
   tag = tag.replace(/(?:[#\.\[]|^).*?(?=$|[#\.\[])|\]/g, m => {
     switch (m[0]) {
       case '#':
-        ret.id = m.slice(1)
+        ret.attrs.id = m.slice(1)
         break
       case '.':
         ret.attrs.class.push(m.slice(1))
