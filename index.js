@@ -4,6 +4,7 @@ var printd = console.dir.bind(console)
 
 function HyperScript({tab='\t', tagFmt=null}={}) {
   return function hyperscript(type, attrs, ...children) {
+    shorthand(type)
     children = Array.isArray(children[0]) ? children[0] : children
     var el = []
 
@@ -24,7 +25,31 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
   }
 }
 
-var h = HyperScript()
+function shorthand(tag) {
+  // print(tag.split(/[#\.]/))
+  var ret = {tag: 'div', attrs: {style: {}}, class: []}
+
+  tag = tag.replace(/(?:[#\.\[]|^).*?(?=$|[#\.\[])|\]/g, m => {
+    switch (m[0]) {
+      case '#':
+        ret.id = m.slice(1)
+        break
+      case '.':
+        ret.class.push(m.slice(1))
+        break
+      case '[':
+        var pair = m.slice(1, -1).split('=')
+        ret.attrs[pair[0]] = pair[1] || true
+        break
+      default:
+        ret.tag = m
+    }
+
+    return ''
+  })
+
+  print(tag, '\n', ret)
+}
 
 function genr(obj) {
   return function*() {
@@ -39,13 +64,16 @@ function iter(obj) {
   return genr(obj)()
 }
 
+
+var h = HyperScript()
+
 // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
-var start = process.hrtime()
-for(let i = 0; i < 100000; i++)
-  var html = h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
-print(process.hrtime(start))
+// var start = process.hrtime()
+// for(let i = 0; i < 100000; i++)
+//   var html = h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
+// print(process.hrtime(start))
 
-// var html = h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
+var html = h('div#bob.a.b.c[type=awe][style=background:red;]', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
 
 print(html)
