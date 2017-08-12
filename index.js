@@ -25,6 +25,18 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
   }
 }
 
+function toStyleStr(obj) {
+  var ks = Object.keys(obj), vs = Object.values(obj)
+
+  return ks.map((e, i) => [e, vs[i]].join(':')).join('; ')
+}
+
+function fromStyleStr(str) {
+  return str.split(/\s*;\s*/)
+  .filter(e => e)
+  .reduce((acc, cur) => ([k, v] = cur.split(':'), {...acc, [k]: v}), {})
+}
+
 function shorthand(tag) {
   var ret = {tag: 'div', attrs: {class: [], style: ''}}
 
@@ -40,11 +52,8 @@ function shorthand(tag) {
         var [key, val] = m.slice(1, -1).split('=')
 
         // Process style string into obj.
-        if (key.toLowerCase() == 'style') {
-          val = val.split(/\s*;\s*/)
-          .filter(e => e)
-          .reduce((acc, cur) => ([k, v] = cur.split(':'), {...acc, [k]: v}), {})
-        }
+        if (key.toLowerCase() == 'style')
+          val = fromStyleStr(val)
 
         ret.attrs[key] = val || true
         break
@@ -52,7 +61,7 @@ function shorthand(tag) {
         ret.tag = m
     }
   })
-  print(ret)
+
   return ret
 }
 
