@@ -13,9 +13,7 @@ function h(type, attrs, ...children) {
 
   el.push('>\n\t')
 
-  // for (let i of children)
-  //   el.push(i.split('\n').join('\n\t') + '\n\t')
-
+  // i: index, v: value, eol: end of loop.
   for(let i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
     el.push(v.split('\n').join('\n\t') + (eol ? '' : '\n\t'))
 
