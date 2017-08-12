@@ -37,14 +37,22 @@ function shorthand(tag) {
         ret.attrs.class.push(m.slice(1))
         break
       case '[':
-        var [k, v] = m.slice(1, -1).split('=')
-        ret.attrs[k] = v || true
+        var [key, val] = m.slice(1, -1).split('=')
+
+        // Process style string into obj.
+        if (key.toLowerCase() == 'style') {
+          val = val.split(/\s*;\s*/)
+          .filter(e => e)
+          .reduce((acc, cur) => ([k, v] = cur.split(':'), {...acc, [k]: v}), {})
+        }
+
+        ret.attrs[key] = val || true
         break
       default:
         ret.tag = m
     }
   })
-
+  print(ret)
   return ret
 }
 
