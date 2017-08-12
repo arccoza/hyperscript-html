@@ -5,17 +5,18 @@ var printd = console.dir.bind(console)
 function h(type, attrs, ...children) {
   children = Array.isArray(children[0]) ? children[0] : children
   var el = []
+  var tab = '\t'
 
   el.push(`<${type}`)
 
   for (let [k, v] of iter(attrs))
     el.push(` ${k}="${v}"`)
 
-  el.push('>\n\t')
+  el.push(`>\n${tab}`)
 
   // i: index, v: value, eol: end of loop.
   for(let i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
-    el.push(v.split('\n').join('\n\t') + (eol ? '' : '\n\t'))
+    el.push(v.split('\n').join(`\n${tab}`) + (eol ? '' : `\n${tab}`))
 
   el.push(`\n</${type}>`)
 
