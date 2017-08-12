@@ -26,8 +26,7 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 }
 
 function shorthand(tag) {
-  // print(tag.split(/[#\.]/))
-  var ret = {tag: 'div', attrs: {style: {}}, class: []}
+  var ret = {tag: 'div', attrs: {class: [], style: ''}}
 
   tag = tag.replace(/(?:[#\.\[]|^).*?(?=$|[#\.\[])|\]/g, m => {
     switch (m[0]) {
@@ -35,20 +34,18 @@ function shorthand(tag) {
         ret.id = m.slice(1)
         break
       case '.':
-        ret.class.push(m.slice(1))
+        ret.attrs.class.push(m.slice(1))
         break
       case '[':
-        var pair = m.slice(1, -1).split('=')
-        ret.attrs[pair[0]] = pair[1] || true
+        var [k, v] = m.slice(1, -1).split('=')
+        ret.attrs[k] = v || true
         break
       default:
         ret.tag = m
     }
-
-    return ''
   })
 
-  print(tag, '\n', ret)
+  return ret
 }
 
 function genr(obj) {
