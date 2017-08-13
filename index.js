@@ -3,6 +3,11 @@ var printd = console.dir.bind(console)
 var {toStyleStr, fromStyleStr, shorthand, isEmpty, genr, iter} = require('./util.js')
 
 
+var special = {
+  void: ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
+    'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'],
+}
+
 function HyperScript({tab='\t', tagFmt=null}={}) {
   return function hyperscript(type, attrs, ...children) {
     attrs = attrs || {}
@@ -35,11 +40,16 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
     el.push(`>\n${tab}`)
 
-    // i: index, v: value, eol: end of loop.
-    for(let i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
-      el.push(v.split('\n').join(`\n${tab}`) + (eol ? '' : `\n${tab}`))
+    if (!isEmpty(children)) {
+      // i: index, v: value, eol: end of loop.
+      for(let i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
+        el.push(v.split('\n').join(`\n${tab}`) + (eol ? '' : `\n${tab}`))
+    }
 
-    el.push(`\n</${type}>`)
+    // Check for void-elements, and leave off the closing tag.
+    print(special.void.indexOf(type))
+    if (!isEmpty(children) || special.void.indexOf(type) == -1)
+      el.push(`\n</${type}>`)
 
     return el.join('')
   }
