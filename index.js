@@ -46,8 +46,7 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
         el.push(v.split('\n').join(`\n${tab}`) + (eol ? '' : `\n${tab}`))
     }
 
-    // Check for void-elements, and leave off the closing tag.
-    print(special.void.indexOf(type))
+    // Check for empty void-elements, and leave off the closing tag.
     if (!isEmpty(children) || special.void.indexOf(type) == -1)
       el.push(`\n</${type}>`)
 
@@ -62,7 +61,7 @@ var h = HyperScript()
 
 // var start = process.hrtime()
 // for(let i = 0; i < 100000; i++)
-//   var html = h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
+//   var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
 // print(process.hrtime(start))
 
 var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
