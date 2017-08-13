@@ -39,8 +39,8 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
     el.push(`<${type}`)
 
     for (let [k, v] of iter(attrs)) {
-      if(k && !isEmpty(v))
-        el.push(` ${k}="${k == 'class' ? v.join('.') : k == 'style' ? toStyleStr(v) : v}"`)
+      if ((k != 'style' && k != 'class') || !isEmpty(v))
+        el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join('.') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
     }
 
     el.push(`>\n${tab}`)
