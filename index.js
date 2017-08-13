@@ -82,6 +82,18 @@ function shorthand(tag) {
   return ret
 }
 
+function isEmpty(obj) {
+  if (obj) {
+    if (obj.length)
+      return false
+
+    for (const k in obj)
+      return false
+  }
+
+  return true
+}
+
 function genr(obj) {
   return function*() {
     for (var k in obj) {
