@@ -20,10 +20,10 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
       type = sh.tag
 
-      if (sh.attrs.class)
+      if (!isEmpty(sh.attrs.class))
         attrs.class = [...new Set([...sh.attrs.class, ...attrs.class])]
 
-      if (sh.attrs.style)
+      if (!isEmpty(sh.attrs.style))
         attrs.style = {...sh.attrs.style, ...attrs.style}
 
       attrs = {...sh.attrs, ...attrs}
