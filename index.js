@@ -27,8 +27,10 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
     el.push(`<${type}`)
 
-    for (let [k, v] of iter(attrs))
-      el.push(` ${k}="${k == 'class' ? v.join('.') : k == 'style' ? toStyleStr(v) : v}"`)
+    for (let [k, v] of iter(attrs)) {
+      if(k && !isEmpty(v))
+        el.push(` ${k}="${k == 'class' ? v.join('.') : k == 'style' ? toStyleStr(v) : v}"`)
+    }
 
     el.push(`>\n${tab}`)
 
@@ -84,7 +86,7 @@ function shorthand(tag) {
 
 function isEmpty(obj) {
   if (obj) {
-    if (obj.length)
+    if (obj.length || obj.size)
       return false
 
     for (const k in obj)
