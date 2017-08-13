@@ -8,9 +8,16 @@ var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'in
 
 function HyperScript({tab='\t', tagFmt=null}={}) {
   return function hyperscript(type, attrs, ...children) {
-    attrs = attrs || {}
-    attrs.class = attrs.class || []
+    // Prep args, make positions flexible.
     children = Array.isArray(children[0]) ? children[0] : children
+    if (typeof attrs == 'string')
+      [attrs, children] = [{}, [attrs, ...children]]
+    else if(Array.isArray(attrs))
+      [attrs, children] = [{}, attrs]
+    else
+      attrs = attrs || {}
+    attrs.class = attrs.class || []
+    attrs.style = attrs.style || {}
 
     // Merge all attrs from selector str and 2nd arg obj.
     if (typeof type === 'string') {
@@ -62,6 +69,6 @@ var h = HyperScript()
 //   var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
 // print(process.hrtime(start))
 
-var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah')))
+var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
 
 print(html)
