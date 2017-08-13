@@ -3,10 +3,8 @@ var printd = console.dir.bind(console)
 var {toStyleStr, fromStyleStr, shorthand, isEmpty, genr, iter} = require('./util.js')
 
 
-var special = {
-  void: ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
-    'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'],
-}
+var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
+    'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
 function HyperScript({tab='\t', tagFmt=null}={}) {
   return function hyperscript(type, attrs, ...children) {
@@ -47,7 +45,7 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
     }
 
     // Check for empty void-elements, and leave off the closing tag.
-    if (!isEmpty(children) || special.void.indexOf(type) == -1)
+    if (!isEmpty(children) || special.indexOf(type) == -1)
       el.push(`\n</${type}>`)
 
     return el.join('')
