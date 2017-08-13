@@ -39,7 +39,6 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
     el.push(`<${type}`)
 
-    // for (let [k, v] of iter(attrs)) {
     var v = null
     for (let k in attrs) {
       if (hasOwnProperty.call(attrs, k)) {
@@ -67,15 +66,17 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 }
 
 
-var h = HyperScript()
+if (require && require.main === module) {
+  var h = HyperScript()
 
-// print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
+  // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
-var start = process.hrtime()
-for(let i = 0; i < 100000; i++)
+  // var start = process.hrtime()
+  // for(let i = 0; i < 100000; i++)
+  //   var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
+  // print(process.hrtime(start))
+
   var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
-print(process.hrtime(start))
 
-// var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
-
-print(html)
+  print(html)
+}
