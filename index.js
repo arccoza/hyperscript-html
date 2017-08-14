@@ -7,7 +7,7 @@ var hasOwnProperty = Object.prototype.hasOwnProperty
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
     'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', tagFmt=null}={}) {
+function HyperScript({tab='\t', devMode=true, tagFmt=null}={}) {
   return function hyperscript(type, attrs, ...children) {
     // Prep args, make positions flexible.
     children = Array.isArray(children[0]) ? children[0] : children
@@ -39,7 +39,7 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
     el.push(`<${type}`)
 
-    for (var [k, v] in iter(attrs)) {
+    for (var [k, v] of iter(attrs)) {
       if ((k != 'style' && k != 'class') || !isEmpty(v))
         el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join('.') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
     }
@@ -66,12 +66,12 @@ if (require && require.main === module) {
 
   // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
-  var start = process.hrtime()
-  for(var i = 0; i < 100000; i++)
-    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
-  print(process.hrtime(start))
+  // var start = process.hrtime()
+  // for(var i = 0; i < 100000; i++)
+  //   var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
+  // print(process.hrtime(start))
 
-  // var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
+  var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
 
   print(html)
 }
