@@ -7,7 +7,7 @@ var hasOwnProperty = Object.prototype.hasOwnProperty
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
     'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', nl='\n', devMode=true, tagFmt=null}={}) {
+function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true, tagFmt=null}={}) {
   tab = devMode ? tab : ''
   nl = devMode ? nl : ''  // nl: newline.
 
@@ -43,8 +43,10 @@ function HyperScript({tab='\t', nl='\n', devMode=true, tagFmt=null}={}) {
     el.push(`<${type}`)
 
     for (var [k, v] of iter(attrs)) {
-      if ((k != 'style' && k != 'class') || !isEmpty(v))
+      if ((k != 'style' && k != 'class') || !isEmpty(v)) {
+        if (attrsNl) el.push(nl)
         el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join('.') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
+      }
     }
 
     el.push(`>${nl + tab}`)
@@ -70,7 +72,7 @@ function HyperScript({tab='\t', nl='\n', devMode=true, tagFmt=null}={}) {
 
 
 if (require && require.main === module) {
-  var h = HyperScript({devMode: false})
+  var h = HyperScript({devMode: true})
 
   // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
