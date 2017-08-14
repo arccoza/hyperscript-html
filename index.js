@@ -57,9 +57,9 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true, tagFmt=null
     // Add children within element.
     if (!isEmpty(children)) {
       if (devMode) {
-        // i: index, v: value, eol: end of loop.
-        for(var i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
-          el.push(v.split(nl).join(nl + tab) + (eol ? '' : nl + tab))
+        // i: index, c: child, eol: end of loop.
+        for(var i = 0, c, eol; eol = !(children.length - 1 - i), c = children[i]; i++)
+          el.push(c.split(nl).join(nl + tab) + (eol ? '' : nl + tab))
       }
       else {
         el.push(children.join(nl))
