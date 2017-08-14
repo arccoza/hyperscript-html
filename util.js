@@ -1,3 +1,5 @@
+var hasOwnProperty = Object.prototype.hasOwnProperty
+
 function toStyleStr(obj) {
   var ks = Object.keys(obj), vs = Object.values(obj)
 
@@ -52,8 +54,9 @@ function isEmpty(obj) {
 
 function genr(obj) {
   return function*() {
-    for (var k in obj) {
-      if (obj.hasOwnProperty(k))
+    var k
+    for (k in obj) {
+      if (hasOwnProperty.call(obj, k))
         yield [k, obj[k]];
     }
   }
