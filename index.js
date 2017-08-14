@@ -48,7 +48,7 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
     if (!isEmpty(children)) {
       // i: index, v: value, eol: end of loop.
-      for(let i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
+      for(var i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
         el.push(v.split('\n').join(`\n${tab}`) + (eol ? '' : `\n${tab}`))
     }
 
@@ -67,7 +67,7 @@ if (require && require.main === module) {
   // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
   var start = process.hrtime()
-  for(let i = 0; i < 100000; i++)
+  for(var i = 0; i < 100000; i++)
     var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
   print(process.hrtime(start))
 
