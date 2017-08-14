@@ -39,14 +39,9 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
     el.push(`<${type}`)
 
-    var v = null
-    for (let k in attrs) {
-      if (hasOwnProperty.call(attrs, k)) {
-        v = attrs[k]
-
-        if ((k != 'style' && k != 'class') || !isEmpty(v))
-          el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join('.') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
-      }
+    for (var [k, v] in genr(attrs)) {
+      if ((k != 'style' && k != 'class') || !isEmpty(v))
+        el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join('.') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
     }
 
     el.push(`>\n${tab}`)
@@ -71,12 +66,12 @@ if (require && require.main === module) {
 
   // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
-  // var start = process.hrtime()
-  // for(let i = 0; i < 100000; i++)
-  //   var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
-  // print(process.hrtime(start))
+  var start = process.hrtime()
+  for(let i = 0; i < 100000; i++)
+    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
+  print(process.hrtime(start))
 
-  var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
+  // var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
 
   print(html)
 }
