@@ -7,7 +7,7 @@ var hasOwnProperty = Object.prototype.hasOwnProperty
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
     'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true, tagFmt=null}={}) {
+function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
   tab = devMode ? tab : ''
   nl = devMode ? nl : ''  // nl: newline.
 
