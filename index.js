@@ -1,7 +1,6 @@
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
 var {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} = require('./util.js')
-var hasOwnProperty = Object.prototype.hasOwnProperty
 
 
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
@@ -83,7 +82,7 @@ if (require && require.main === module) {
   // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
   // var start = process.hrtime()
-  // for(var i = 0; i < 100000; i++)
+  // for(var i = 0; i < 300000; i++)
   //   var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
   // print(process.hrtime(start))
 
