@@ -7,7 +7,10 @@ var hasOwnProperty = Object.prototype.hasOwnProperty
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
     'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', devMode=true, tagFmt=null}={}) {
+function HyperScript({tab='\t', nl='\n', devMode=true, tagFmt=null}={}) {
+  tab = devMode ? tab : ''
+  nl = devMode ? nl : ''  // nl: newline.
+
   return function hyperscript(type, attrs, ...children) {
     // Prep args, make positions flexible.
     children = Array.isArray(children[0]) ? children[0] : children
@@ -44,17 +47,22 @@ function HyperScript({tab='\t', devMode=true, tagFmt=null}={}) {
         el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join('.') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
     }
 
-    el.push(`>\n${tab}`)
+    el.push(`>${nl + tab}`)
 
     if (!isEmpty(children)) {
-      // i: index, v: value, eol: end of loop.
-      for(var i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
-        el.push(v.split('\n').join(`\n${tab}`) + (eol ? '' : `\n${tab}`))
+      if (devMode) {
+        // i: index, v: value, eol: end of loop.
+        for(var i = 0, v, eol; eol = !(children.length - 1 - i), v = children[i]; i++)
+          el.push(v.split(nl).join(nl + tab) + (eol ? '' : nl + tab))
+      }
+      else {
+        el.push(children.join(nl))
+      }
     }
 
     // Check for empty void-elements, and leave off the closing tag.
     if (!isEmpty(children) || special.indexOf(type) == -1)
-      el.push(`\n</${type}>`)
+      el.push(`${nl}</${type}>`)
 
     return el.join('')
   }
@@ -62,7 +70,7 @@ function HyperScript({tab='\t', devMode=true, tagFmt=null}={}) {
 
 
 if (require && require.main === module) {
-  var h = HyperScript()
+  var h = HyperScript({devMode: false})
 
   // print(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
