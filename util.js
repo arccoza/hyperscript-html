@@ -52,8 +52,7 @@ function isEmpty(obj) {
   return true
 }
 
-
-function* genr(obj) {
+function* iter(obj) {
   var k
   for (k in obj) {
     if (hasOwnProperty.call(obj, k))
@@ -61,8 +60,4 @@ function* genr(obj) {
   }
 }
 
-function iter(obj) {
-  return genr(obj)()
-}
-
-module.exports = {toStyleStr, fromStyleStr, shorthand, isEmpty, genr, iter}
+module.exports = {toStyleStr, fromStyleStr, shorthand, isEmpty, iter}

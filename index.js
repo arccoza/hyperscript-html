@@ -1,6 +1,6 @@
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
-var {toStyleStr, fromStyleStr, shorthand, isEmpty, genr, iter} = require('./util.js')
+var {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} = require('./util.js')
 var hasOwnProperty = Object.prototype.hasOwnProperty
 
 
@@ -39,7 +39,7 @@ function HyperScript({tab='\t', tagFmt=null}={}) {
 
     el.push(`<${type}`)
 
-    for (var [k, v] in genr(attrs)) {
+    for (var [k, v] in iter(attrs)) {
       if ((k != 'style' && k != 'class') || !isEmpty(v))
         el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join('.') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
     }
