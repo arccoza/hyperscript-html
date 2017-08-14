@@ -40,8 +40,10 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true, tagFmt=null
 
     var el = []
 
+    // Start opening tag.
     el.push(`<${type}`)
 
+    // Add attributes to tag.
     for (var [k, v] of iter(attrs)) {
       if ((k != 'style' && k != 'class') || !isEmpty(v)) {
         if (attrsNl) el.push(nl)
@@ -49,8 +51,10 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true, tagFmt=null
       }
     }
 
+    // End opening tag.
     el.push(`>${nl + tab}`)
 
+    // Add children within element.
     if (!isEmpty(children)) {
       if (devMode) {
         // i: index, v: value, eol: end of loop.
@@ -62,6 +66,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true, tagFmt=null
       }
     }
 
+    // Add closing tag.
     // Check for empty void-elements, and leave off the closing tag.
     if (!isEmpty(children) || special.indexOf(type) == -1)
       el.push(`${nl}</${type}>`)
