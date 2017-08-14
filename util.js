@@ -52,13 +52,12 @@ function isEmpty(obj) {
   return true
 }
 
-function genr(obj) {
-  return function*() {
-    var k
-    for (k in obj) {
-      if (hasOwnProperty.call(obj, k))
-        yield [k, obj[k]];
-    }
+
+function* genr(obj) {
+  var k
+  for (k in obj) {
+    if (hasOwnProperty.call(obj, k))
+      yield [k, obj[k]];
   }
 }
 
