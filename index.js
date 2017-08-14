@@ -52,11 +52,12 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true, tagFmt=null
     }
 
     // End opening tag.
-    el.push(`>${nl + tab}`)
+    el.push('>')
 
     // Add children within element.
     if (!isEmpty(children)) {
       if (devMode) {
+        el.push(nl + tab)
         // i: index, c: child, eol: end of loop.
         for(var i = 0, c, eol; eol = !(children.length - 1 - i), c = children[i]; i++)
           el.push(c.split(nl).join(nl + tab) + (eol ? '' : nl + tab))
