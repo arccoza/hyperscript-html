@@ -8,6 +8,7 @@ function toStyleStr(obj) {
 }
 
 function fromStyleStr(str) {
+  var k, v
   return str.split(/\s*;\s*/)
   .filter(e => e)
   .reduce((acc, cur) => ([k, v] = cur.split(':'), {...acc, [k]: v}), {})
