@@ -1,3 +1,4 @@
+var print = console.log.bind(console)
 var hasOwnProperty = Object.prototype.hasOwnProperty
 
 function toStyleStr(obj) {
