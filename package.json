@@ -2,7 +2,7 @@
   "name": "hyperscript-html",
   "version": "0.4.0",
   "description": "A fast, simple, hyperscript implementation for generating HTML.",
-  "main": "index.js",
+  "main": "common/index.js",
   "repository": "github.com/arccoza/hyperscript-html",
   "author": "Adrien <adrien@arccoza.com>",
   "license": "MIT",
