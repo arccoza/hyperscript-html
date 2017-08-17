@@ -3,9 +3,15 @@
   "version": "0.8.0",
   "description": "A fast, simple, hyperscript implementation for generating HTML.",
   "main": "lib/index",
-  "repository": "github.com/arccoza/hyperscript-html",
+  "repository": "https://github.com/arccoza/hyperscript-html",
+  "bugs": "https://github.com/arccoza/hyperscript-html/issues",
   "author": "Adrien <adrien@arccoza.com>",
   "license": "MIT",
+  "keywords": [
+    "hyperscript",
+    "HTML",
+    "renderer"
+  ],
   "dependencies": {
     "fly-rename": "^0.1.1",
     "zenhand": "file:/home/adrien/Projects/code/zenhand/"
