@@ -1,6 +1,6 @@
 {
   "name": "hyperscript-html",
-  "version": "0.6.0",
+  "version": "0.8.0",
   "description": "A fast, simple, hyperscript implementation for generating HTML.",
   "main": "lib/index",
   "repository": "github.com/arccoza/hyperscript-html",
