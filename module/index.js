@@ -1,6 +1,5 @@
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
-// var {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} = require('./util.js')
 import {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} from './util.js'
 
 

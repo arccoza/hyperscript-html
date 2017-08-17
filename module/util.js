@@ -1,6 +1,7 @@
 var print = console.log.bind(console)
 var hasOwnProperty = Object.prototype.hasOwnProperty
 
+
 function toStyleStr(obj) {
   var ks = Object.keys(obj), vs = Object.values(obj)
 
@@ -62,5 +63,4 @@ function* iter(obj) {
   }
 }
 
-// module.exports = {toStyleStr, fromStyleStr, shorthand, isEmpty, iter}
 export {toStyleStr, fromStyleStr, shorthand, isEmpty, iter}
