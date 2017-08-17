@@ -10,7 +10,11 @@
   "keywords": [
     "hyperscript",
     "HTML",
-    "renderer"
+    "HTML5",
+    "renderer",
+    "generator",
+    "simple",
+    "fast"
   ],
   "dependencies": {
     "fly-rename": "^0.1.1",
