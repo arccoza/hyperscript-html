@@ -1,6 +1,6 @@
 {
   "name": "hyperscript-html",
-  "version": "0.4.0",
+  "version": "0.6.0",
   "description": "A fast, simple, hyperscript implementation for generating HTML.",
   "main": "common/index.js",
   "module": "module/index.js",
