@@ -75,6 +75,8 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
   }
 }
 
+export default HyperScript
+
 
 if (require && require.main === module) {
   var h = HyperScript({devMode: true})

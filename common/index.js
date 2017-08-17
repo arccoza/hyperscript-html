@@ -1,12 +1,15 @@
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _util = require('./util.js');
 
 var print = console.log.bind(console);
 var printd = console.dir.bind(console);
-// var {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} = require('./util.js')
 
 
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr'];
@@ -69,6 +72,9 @@ function HyperScript({ tab = '\t', nl = '\n', attrsNl = true, devMode = true } =
     return el.join('');
   };
 }
+
+exports.default = HyperScript;
+
 
 if (require && require.main === module) {
   var h = HyperScript({ devMode: true });

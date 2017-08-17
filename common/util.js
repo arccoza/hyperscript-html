@@ -65,7 +65,6 @@ function* iter(obj) {
   }
 }
 
-// module.exports = {toStyleStr, fromStyleStr, shorthand, isEmpty, iter}
 exports.toStyleStr = toStyleStr;
 exports.fromStyleStr = fromStyleStr;
 exports.shorthand = shorthand;
