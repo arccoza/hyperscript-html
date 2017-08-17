@@ -14,7 +14,7 @@
   ],
   "dependencies": {
     "fly-rename": "^0.1.1",
-    "zenhand": "file:/home/adrien/Projects/code/zenhand/"
+    "zenhand": "^0.8.0"
   },
   "devDependencies": {
     "@taskr/babel": "^1.1.0",
