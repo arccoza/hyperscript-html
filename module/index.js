@@ -1,6 +1,7 @@
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
-var {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} = require('./util.js')
+// var {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} = require('./util.js')
+import {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} from './util.js'
 
 
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',

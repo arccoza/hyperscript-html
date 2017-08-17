@@ -1,25 +1,7 @@
 // .babelrc
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": ["last 2 versions"]
-        },
-        // "useBuiltIns": "usage",
-        "debug": true,
-        "modules": 'commonjs'
-      }
-    ]
-  ],
   "plugins": [
     "transform-object-rest-spread",
-    ["transform-runtime", {
-      "helpers": false,
-      "polyfill": false,
-      "regenerator": true,
-      "moduleName": "babel-runtime"
-    }]
+    "transform-es2015-modules-commonjs"
   ]
 }
