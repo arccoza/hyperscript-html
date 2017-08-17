@@ -8,6 +8,8 @@
   "author": "Adrien <adrien@arccoza.com>",
   "license": "MIT",
   "dependencies": {
+    "fly-rename": "^0.1.1",
+    "zenhand": "file:/home/adrien/Projects/code/zenhand/"
   },
   "devDependencies": {
     "@taskr/babel": "^1.1.0",

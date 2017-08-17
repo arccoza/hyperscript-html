@@ -1,20 +1,23 @@
 const Taskr = require('taskr');
 const print = console.log.bind(console)
 
-const env = process.env.NODE_ENV
 const src = {
-  module: 'module/**/*.js'
+  module: 'lib/**/*.es6'
 }
 
 exports.clean = function*(task) {
-    yield task.clear(['./common']);
+    yield task.clear(['./lib/**/*.js']);
 }
 
 exports.esm2cjs = function*(task) {
     yield task
       .source(src.module)
       .babel()
-      .target('./common')
+      .rename((file) => {
+        file.dirname = ''
+        file.extname = '.js'
+      })
+      .target('./lib')
 }
 
 exports.default = function*(task) {
@@ -26,7 +29,8 @@ if (require && require.main === module) {
     tasks: module.exports,
     plugins: [
       require('@taskr/clear'),
-      require('@taskr/babel')
+      require('@taskr/babel'),
+      require('fly-rename')
     ]
   })
 

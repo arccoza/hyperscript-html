@@ -1,6 +1,7 @@
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
-import {toStyleStr, fromStyleStr, shorthand, isEmpty, iter} from './util.js'
+import {isEmpty, iter} from './util.js'
+import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
 
 
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
@@ -24,7 +25,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
 
     // Merge all attrs from selector str and 2nd arg obj.
     if (typeof type === 'string') {
-      var sh = shorthand(type)
+      var sh = zenhand(type)
 
       type = sh.tag
 
