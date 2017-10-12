@@ -1,6 +1,6 @@
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
-import {isEmpty} from './util.js'
+import {isEmpty} from './utils.js'
 import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
 
 
