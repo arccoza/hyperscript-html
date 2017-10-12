@@ -1,6 +1,6 @@
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
-import {isEmpty, iter} from './util.js'
+import {isEmpty} from './util.js'
 import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
 
 
@@ -76,7 +76,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
   }
 }
 
-export default HyperScript
+export {HyperScript}
 
 
 if (require && require.main === module) {
