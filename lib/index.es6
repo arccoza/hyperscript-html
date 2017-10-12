@@ -44,15 +44,6 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
     el.push(`<${type}`)
 
     // Add attributes to tag.
-    // for (var [k, v] of iter(attrs)) {
-    // var v
-    // for (var k in Object.keys(attrs)) {
-    //   v = attrs[k]
-    // var v
-    // for (var k in attrs) {
-    //   if (!attrs.hasOwnProperty(k))
-    //     continue
-    //   v = attrs[k]
     for (var i, k, v, keys = Object.keys(attrs); (k = keys[i++], v = attrs[k]);) {
       if ((k != 'style' && k != 'class') || !isEmpty(v)) {
         if (attrsNl) el.push(nl)
