@@ -6,18 +6,18 @@ const src = {
 }
 
 exports.clean = function*(task) {
-    yield task.clear(['./lib/**/*.js']);
+  yield task.clear(['./lib/**/*.js']);
 }
 
 exports.esm2cjs = function*(task) {
-    yield task
-      .source(src.module)
-      .babel()
-      .rename((file) => {
-        file.dirname = ''
-        file.extname = '.js'
-      })
-      .target('./lib')
+  yield task
+    .source(src.module)
+    .babel()
+    .rename((file) => {
+      file.dirname = ''
+      file.extname = '.js'
+    })
+    .target('./lib')
 }
 
 exports.default = function*(task) {
