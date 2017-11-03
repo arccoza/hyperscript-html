@@ -24,12 +24,6 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
   function hyperscript(type, attrs, ...children) {
     // Prep args, make positions flexible.
     children = Array.isArray(children[0]) ? children[0] : children
-    // if (typeof attrs == 'string')
-    //   [attrs, children] = [{}, [attrs, ...children]]
-    // else if(Array.isArray(attrs))
-    //   [attrs, children] = [{}, attrs]
-    // else
-    //   attrs = attrs || {}
     attrs = attrs || {}
     attrs.class = attrs.class || []
     attrs.style = attrs.style || {}
@@ -40,6 +34,9 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
 
       type = sh.tag
 
+      // TODO: Fix this uniquefiying of class names in the class array,
+      // sometimes you want duplicates. Also add support for className prop,
+      // as used by React.
       if (!isEmpty(sh.attrs.class))
         attrs.class = [...new Set([...sh.attrs.class, ...attrs.class])]
 
