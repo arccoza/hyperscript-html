@@ -27,6 +27,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "hyperscript": "^2.0.2",
+    "tap-diff": "^0.1.1",
+    "tape": "^4.8.0",
     "taskr": "^1.1.0"
   }
 }
