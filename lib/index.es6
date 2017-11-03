@@ -7,23 +7,29 @@ import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function hyperflexible(a, b, ...c) {
+// A wrapper function that provides a flexible arg interface for hyperscript.
+function hyperflexible(fn, a, b, ...c) {
+  if(b == null || (!Array.isArray(b) && b === Object(b)))
+    return fn(a, b, ...c)
 
+  return fn(a, {}, b, ...c)
 }
 
 function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
   tab = devMode ? tab : ''
   nl = devMode ? nl : ''  // nl: newline.
 
-  return function hyperscript(type, attrs, ...children) {
+  return hyperflexible.bind(null, hyperscript)
+
+  function hyperscript(type, attrs, ...children) {
     // Prep args, make positions flexible.
     children = Array.isArray(children[0]) ? children[0] : children
-    if (typeof attrs == 'string')
-      [attrs, children] = [{}, [attrs, ...children]]
-    else if(Array.isArray(attrs))
-      [attrs, children] = [{}, attrs]
-    else
-      attrs = attrs || {}
+    // if (typeof attrs == 'string')
+    //   [attrs, children] = [{}, [attrs, ...children]]
+    // else if(Array.isArray(attrs))
+    //   [attrs, children] = [{}, attrs]
+    // else
+    //   attrs = attrs || {}
     attrs.class = attrs.class || []
     attrs.style = attrs.style || {}
 
