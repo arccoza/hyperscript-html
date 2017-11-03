@@ -12,7 +12,7 @@ function hyperflexible(fn, a, b, ...c) {
   if(b == null || (!Array.isArray(b) && b === Object(b)))
     return fn(a, b, ...c)
 
-  return fn(a, {}, b, ...c)
+  return fn(a, null, b, ...c)
 }
 
 function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
@@ -30,6 +30,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
     //   [attrs, children] = [{}, attrs]
     // else
     //   attrs = attrs || {}
+    attrs = attrs || {}
     attrs.class = attrs.class || []
     attrs.style = attrs.style || {}
 
