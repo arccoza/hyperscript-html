@@ -15,6 +15,15 @@ function hyperflexible(fn, a, b, ...c) {
   return fn(a, null, b, ...c)
 }
 
+function flattened(arr, fn) {
+  for (var i = 0, v, end; end = !(arr.length - 1 - i), v = arr[i]; i++) {
+    if (Array.isArray(v))
+      flattened(v, fn)
+    else
+      fn(i, v)
+  }
+}
+
 function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
   tab = devMode ? tab : ''
   nl = devMode ? nl : ''  // nl: newline.
