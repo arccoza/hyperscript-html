@@ -32,7 +32,6 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
 
   function hyperscript(type, attrs, ...children) {
     // Prep args, make positions flexible.
-    // children = Array.isArray(children[0]) ? children[0] : children
     attrs = attrs || {}
     attrs.class = attrs.class || []
     attrs.style = attrs.style || {}
