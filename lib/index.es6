@@ -15,12 +15,12 @@ function hyperflexible(fn, a, b, ...c) {
   return fn(a, null, b, ...c)
 }
 
-function flattened(arr, fn) {
+function flattened(arr, fn, depth=0) {
   for (var i = 0, v, end; end = !(arr.length - 1 - i), v = arr[i]; i++) {
     if (Array.isArray(v))
-      flattened(v, fn)
+      flattened(v, fn, depth + 1, end)
     else
-      fn(i, v)
+      fn(i, v, depth, end)
   }
 }
 
@@ -32,7 +32,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
 
   function hyperscript(type, attrs, ...children) {
     // Prep args, make positions flexible.
-    children = Array.isArray(children[0]) ? children[0] : children
+    // children = Array.isArray(children[0]) ? children[0] : children
     attrs = attrs || {}
     attrs.class = attrs.class || []
     attrs.style = attrs.style || {}
@@ -75,12 +75,13 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
     if (!isEmpty(children)) {
       if (devMode) {
         el.push(nl + tab)
-        // i: index, c: child, eol: end of loop.
-        for(var i = 0, c, eol; eol = !(children.length - 1 - i), c = children[i]; i++)
-          el.push(c.split(nl).join(nl + tab) + (eol ? '' : nl + tab))
+        // i: index, c: child, depth: nested depth, end: end of loop.
+        flattened(children, (i, c, depth, end) => {
+          el.push(c.split(nl).join(nl + tab) + (end ? '' : nl + tab))
+        })
       }
       else {
-        el.push(children.join(nl))
+        flattened(children, (i, c) => el.push(c))
       }
     }
 
