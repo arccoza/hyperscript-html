@@ -1,29 +1,11 @@
 var prints = console.log.bind(console)
 var printd = console.dir.bind(console)
-import {isEmpty} from './utils.js'
+import {isEmpty, hyperflexible, flattened} from './utils.js'
 import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
 
 
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
-
-// A wrapper function that provides a flexible arg interface for hyperscript.
-function hyperflexible(fn, a, b, ...c) {
-  if(b == null || (!Array.isArray(b) && b === Object(b)))
-    return fn(a, b, ...c)
-
-  return fn(a, null, b, ...c)
-}
-
-// A function to flatten the child items and arrays passed to hyperscript.
-function flattened(arr, fn, depth=0) {
-  for (var i = 0, v, end; end = !(arr.length - 1 - i), v = arr[i]; i++) {
-    if (Array.isArray(v))
-      flattened(v, fn, depth + 1, end)
-    else
-      fn(i, v, depth, end)
-  }
-}
 
 function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
   tab = devMode ? tab : ''
