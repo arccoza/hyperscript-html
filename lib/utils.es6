@@ -32,12 +32,4 @@ function flattened(arr, fn, depth=0) {
   }
 }
 
-function* iter(obj) {
-  var k
-  for (k in obj) {
-    if (hasOwnProperty.call(obj, k))
-      yield [k, obj[k]];
-  }
-}
-
 export {isEmpty, hyperflexible, flattened}
