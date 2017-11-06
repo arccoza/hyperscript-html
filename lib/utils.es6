@@ -36,4 +36,4 @@ function flattened(arr, fn, depth=0) {
   }
 }
 
-export {isEmpty, hyperflexible, flattened}
+export {isEmpty, isObject, hyperflexible, flattened}
