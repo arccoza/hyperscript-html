@@ -15,7 +15,7 @@ function isEmpty(obj) {
 }
 
 function isObject(obj) {
-  return !Array.isArray(obj) && obj === Object(obj)
+  return !Array.isArray(obj) && typeof obj != 'function' && obj === Object(obj)
 }
 
 // A wrapper function that provides a flexible arg interface for hyperscript.
