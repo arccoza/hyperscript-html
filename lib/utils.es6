@@ -14,9 +14,13 @@ function isEmpty(obj) {
   return true
 }
 
+function isObject(obj) {
+  return !Array.isArray(obj) && obj === Object(obj)
+}
+
 // A wrapper function that provides a flexible arg interface for hyperscript.
 function hyperflexible(fn, a, b, ...c) {
-  if(b == null || (!Array.isArray(b) && b === Object(b)))
+  if(b == null || isObject(b))
     return fn(a, b, ...c)
 
   return fn(a, null, b, ...c)
