@@ -17,11 +17,13 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
     // Prep args, make positions flexible.
     attrs = attrs || {}
     attrs.class = attrs.class || []
+    attrs.className = attrs.className || []
     attrs.style = attrs.style || {}
 
     // Merge all attrs from selector str and 2nd arg obj.
     if (typeof type === 'string') {
       var sh = zenhand(type)
+      sh.attrs.className = sh.attrs.className || []
 
       type = sh.tag
 
@@ -29,7 +31,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
       // sometimes you want duplicates. Also add support for className prop,
       // as used by React.
       if (!isEmpty(sh.attrs.class))
-        attrs.class = [...sh.attrs.class, ...attrs.class]
+        attrs.class = [...sh.attrs.class, ...sh.attrs.className, ...attrs.class, ...attrs.className]
 
       if (!isEmpty(sh.attrs.style))
         attrs.style = {...sh.attrs.style, ...attrs.style}
