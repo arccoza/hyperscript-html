@@ -29,7 +29,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
       // sometimes you want duplicates. Also add support for className prop,
       // as used by React.
       if (!isEmpty(sh.attrs.class))
-        attrs.class = [...new Set([...sh.attrs.class, ...attrs.class])]
+        attrs.class = [...sh.attrs.class, ...attrs.class]
 
       if (!isEmpty(sh.attrs.style))
         attrs.style = {...sh.attrs.style, ...attrs.style}
