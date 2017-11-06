@@ -25,21 +25,29 @@ var fix = {
 }
 
 
-test('Test flexible fn interface, should be equal with different args.', function (t) {
+test('Test flexible fn interface, should be equal with different child arg arrangements.', function (t) {
   let expect =
 `<div>
 \tText A.
 \tText B.
+\tText C.
+\tText D.
 </div>`
 
   let
-    a = h('div', null, 'Text A.', 'Text B.'),
-    b = h('div', 'Text A.', 'Text B.'),
-    c = h('div', null, ['Text A.', 'Text B.']),
-    d = h('div', ['Text A.', 'Text B.']),
-    results = [a, b, c, d]
+    a = h('div', null, 'Text A.', 'Text B.', 'Text C.', 'Text D.'),
+    b = h('div', 'Text A.', 'Text B.', 'Text C.', 'Text D.'),
+    c = h('div', null, ['Text A.', 'Text B.', 'Text C.', 'Text D.']),
+    d = h('div', ['Text A.', 'Text B.', 'Text C.', 'Text D.']),
+    e = h('div', null, 'Text A.', ['Text B.', 'Text C.'], 'Text D.'),
+    f = h('div', 'Text A.', ['Text B.', 'Text C.'], 'Text D.'),
+    g = h('div', null, ['Text A.', ['Text B.', ['Text C.', ['Text D.']]]]),
+    i = h('div', ['Text A.', ['Text B.', ['Text C.', ['Text D.']]]]),
+    j = h('div', null, ['Text A.'], ['Text B.'], ['Text C.'], ['Text D.']),
+    k = h('div', ['Text A.'], ['Text B.'], ['Text C.'], ['Text D.']),
+    results = [a, b, c, d, e, f, g, i, j, k]
 
-  print(h('div', null, ['Text A.', 'Text B.'], 'Text C.'))
+  // print(k)
 
   for (let r of results)
     t.equal(r, expect)
