@@ -7,7 +7,7 @@ import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
+function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true}={}) {
   tab = devMode ? tab : ''
   nl = devMode ? nl : ''  // nl: newline.
 
@@ -44,7 +44,7 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
     // Add attributes to tag.
     for (var i = 0, k, v, keys = Object.keys(attrs); (k = keys[i++], v = attrs[k]);) {
       if ((k != 'style' && k != 'class') || !isEmpty(v)) {
-        if (attrsNl) el.push(nl)
+        if (attrsNewLine) el.push(nl)
         el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join(' ') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
       }
     }
