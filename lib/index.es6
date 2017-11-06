@@ -27,9 +27,6 @@ function HyperScript({tab='\t', nl='\n', attrsNl=true, devMode=true}={}) {
 
       type = sh.tag
 
-      // TODO: Fix this uniquefiying of class names in the class array,
-      // sometimes you want duplicates. Also add support for className prop,
-      // as used by React.
       if (!isEmpty(sh.attrs.class))
         attrs.class = [...sh.attrs.class, ...sh.attrs.className, ...attrs.class, ...attrs.className]
 
