@@ -11,7 +11,11 @@ if(!module.parent) {
 }
 
 
-test('isEmpty should be true when supplied an empty object, array or string or any other primitive.', function (t) {
+test(`isEmpty should be false when supplied any array, \
+string or object with contents, and false otherwise.`, function (t) {
+  t.notOk(isEmpty(['foo']))
+  t.notOk(isEmpty({foo: 'foo'}))
+  t.notOk(isEmpty('foo'))
   t.ok(isEmpty(undefined))
   t.ok(isEmpty(null))
   t.ok(isEmpty(0))
@@ -24,15 +28,8 @@ test('isEmpty should be true when supplied an empty object, array or string or a
   t.end()
 })
 
-test('isEmpty should be false when supplied any array, string or object with contents.', function (t) {
-  t.notOk(isEmpty(['foo']))
-  t.notOk(isEmpty({foo: 'foo'}))
-  t.notOk(isEmpty('foo'))
-  t.end()
-})
-
-
-test('isObject should be true when supplied any object other than array or fn and false otherwise.', function (t) {
+test(`isObject should be true when supplied any object \
+other than array or fn and false otherwise.`, function (t) {
   t.ok(isObject({}))
   t.ok(isObject(new Date()))
   t.ok(isObject(Object()))
@@ -44,5 +41,15 @@ test('isObject should be true when supplied any object other than array or fn an
   t.notOk(isObject(true))
   t.notOk(isObject(false))
   t.notOk(isObject(function() {}))
+  t.end()
+})
+
+test(`hyperflexible should take a variable number, \
+of args(1+), and call fn with a number of args(2+).`, function (t) {
+  let f = (...args) => (print(args) ,t.ok(args.length >= 2))
+  f = hyperflexible.bind(null, f)
+
+  f('div')
+  f('div', 1, 2, 3)
   t.end()
 })
