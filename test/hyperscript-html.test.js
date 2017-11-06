@@ -12,20 +12,55 @@ if(!module.parent) {
     .pipe(process.stdout);
 }
 
-var h = HyperScript()
-
-var fix = {
+let fix = {
   props: {
-    title: 'A title attribute',
+    class: ['foo', 'bar'],
+    className: ['bar', 'baz'],
     style: {
       position: 'absolute',
       backgroundColor: '#ff0000',
-    }
+    },
+    title: 'A title attribute',
   }
 }
 
 
+test('Test the most basic, single tag with no attrs or children, should be equal.', function (t) {
+  let h = HyperScript()
+  let expect =
+`<p>
+</p>`
+
+  let
+    a = h('p'),
+    b = h('p', null, null),
+    c = h('p', {}, []),
+    results = [a, b, c]
+
+  for (let r of results)
+    t.equal(r, expect)
+
+  t.end()
+})
+
+test('Test attrs handling, should be equal.', function (t) {
+  let h = HyperScript()
+  let expect =
+`<p
+ class="foo bar bar baz"
+ style="position:absolute; backgroundColor:#ff0000"
+ title="A title attribute">
+</p>`
+
+  let result = h('p', fix.props)
+
+  t.equal(result, expect)
+
+  t.end()
+})
+
 test('Test flexible fn interface, should be equal with different child arg arrangements.', function (t) {
+  let h = HyperScript()
   let expect =
 `<div>
 \tText A.
