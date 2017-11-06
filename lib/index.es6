@@ -27,8 +27,11 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexib
 
       type = sh.tag
 
+      if (!isEmpty(attrs.className))
+        attrs.class = [...attrs.class, ...attrs.className]
+
       if (!isEmpty(sh.attrs.class))
-        attrs.class = [...sh.attrs.class, ...sh.attrs.className, ...attrs.class, ...attrs.className]
+        attrs.class = [...sh.attrs.class, ...attrs.class]
 
       if (!isEmpty(sh.attrs.style))
         attrs.style = {...sh.attrs.style, ...attrs.style}
@@ -85,7 +88,7 @@ if (require && require.main === module) {
 
   var start = process.hrtime()
   for(var i = 0; i < 100000; i++)
-    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', className: ['c'], style: {color: 'orange'}}, h('span', h('i', 'she\nsells\nsea', 'shells by the sea shore'), h('br'), h('i', {'eh': true})))
+    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c', 'foo', 'bar'], className: ['bar', 'baz'], style: {color: 'orange'}}, h('span', h('i', 'she\nsells\nsea', 'shells by the sea shore'), h('br'), h('i', {'eh': true})))
   prints(process.hrtime(start))
 
   prints(html)
