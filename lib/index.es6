@@ -1,7 +1,7 @@
 var prints = console.log.bind(console)
 var printd = console.dir.bind(console)
 import {isEmpty, hyperflexible, flattened} from './utils.js'
-import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
+import {toStyleStr, zenhand} from 'zenhand'
 
 
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
