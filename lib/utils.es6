@@ -7,7 +7,7 @@ function isEmpty(obj) {
     if (obj.length || obj.size)
       return false
 
-    for (const k in obj)
+    for (var k in obj)
       return false
   }
 
