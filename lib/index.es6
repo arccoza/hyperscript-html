@@ -42,7 +42,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexib
     el.push(`<${type}`)
 
     // Add attributes to tag.
-    for (var i = 0, k, v, keys = Object.keys(attrs); (k = keys[i++], v = attrs[k]);) {
+    for (var i = 0, k, v, keys = Object.keys(attrs); k = keys[i++], v = attrs[k], k;) {
       if (!isEmpty(v)) {
         if (attrsNewLine) el.push(nl)
         el.push(` ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v) : v}"`)
@@ -84,7 +84,7 @@ if (require && require.main === module) {
   // var h = require('hyperscript')
 
   var start = process.hrtime()
-  for(var i = 0; i < 1; i++)
+  for(var i = 0; i < 100000; i++)
     var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', className: ['c'], style: {color: 'orange'}}, h('span', h('i', 'she\nsells\nsea', 'shells by the sea shore'), h('br'), h('i', {'eh': true})))
   prints(process.hrtime(start))
 
