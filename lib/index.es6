@@ -7,11 +7,11 @@ import {toStyleStr, fromStyleStr, zenhand} from 'zenhand'
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true}={}) {
+function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexibleArgs=true}={}) {
   tab = devMode ? tab : ''
   nl = devMode ? nl : ''  // nl: newline.
 
-  return hyperflexible.bind(null, hyperscript)
+  return flexibleArgs ? hyperflexible.bind(null, hyperscript) : hyperscript
 
   function hyperscript(type, attrs, ...children) {
     // Prep args, make defaults.
@@ -79,7 +79,7 @@ export {HyperScript}
 
 
 if (require && require.main === module) {
-  var h = HyperScript({devMode: false})
+  var h = HyperScript({devMode: false, flexibleArgs: true})
   // var h = require('hyperscript')
 
   // prints(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
