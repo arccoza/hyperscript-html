@@ -27,12 +27,12 @@ function hyperflexible(fn, a, b, ...c) {
 }
 
 // A function to flatten the child items and arrays passed to hyperscript.
-function flattened(arr, fn, depth=0) {
-  for (var i = 0, v, end; end = !(arr.length - 1 - i), v = arr[i]; i++) {
+function flattened(arr, fn) {
+  for (var i = 0, v; v = arr[i]; i++) {
     if (Array.isArray(v))
-      flattened(v, fn, depth + 1, end)
+      flattened(v, fn)
     else
-      fn(i, v, depth, end)
+      fn(i, v)
   }
 }
 

@@ -55,10 +55,10 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexib
     // Add children within element.
     if (!isEmpty(children)) {
       if (devMode) {
-        el.push(nl + tab)
-        // i: index, c: child, depth: nested depth, end: end of loop.
-        flattened(children, (i, c, depth, end) => {
-          el.push(c.split(nl).join(nl + tab) + (end ? '' : nl + tab))
+        // i: index, c: child.
+        flattened(children, (i, c) => {
+          el.push(nl + tab)
+          el.push(c.split(nl).join(nl + tab))
         })
       }
       else {
@@ -79,17 +79,13 @@ export {HyperScript}
 
 
 if (require && require.main === module) {
-  var h = HyperScript({devMode: false, flexibleArgs: true})
+  var h = HyperScript({devMode: true, flexibleArgs: true})
   // var h = require('hyperscript')
-
-  // prints(h('div', {hola: 'value'}, h('span', null, h('i', null, 'hello\ndear\nnana', 'oh yeah'))))
 
   var start = process.hrtime()
   for(var i = 0; i < 100000; i++)
-    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', className: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
+    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', className: ['c'], style: {color: 'orange'}}, h('span', h('i', 'she\nsells\nsea', 'shells by the sea shore'), h('i', {'eh': true})))
   prints(process.hrtime(start))
-
-  // var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c'], style: {color: 'orange'}}, h('span', h('i', 'hello\ndear\nnana', 'oh yeah'), h('i', {'eh': true})))
 
   prints(html)
   // prints(html.outerHTML)
