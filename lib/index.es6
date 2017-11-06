@@ -7,7 +7,7 @@ import {toStyleStr, zenhand} from 'zenhand'
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexibleArgs=true}={}) {
+function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexibleArgs=true, voidElements=true}={}) {
   tab = devMode ? tab : ''
   nl = devMode ? nl : ''  // nl: newline.
 
@@ -68,7 +68,8 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexib
 
     // Add closing tag.
     // Check for empty void-elements, and leave off the closing tag.
-    if (!isEmpty(children) || special.indexOf(type) == -1)
+    // if option `voidElements=true`.
+    if (!isEmpty(children) || (!voidElements || special.indexOf(type) == -1))
       el.push(`${nl}</${type}>`)
 
     return el.join('')
@@ -79,12 +80,12 @@ export {HyperScript}
 
 
 if (require && require.main === module) {
-  var h = HyperScript({devMode: true, flexibleArgs: true})
+  var h = HyperScript({devMode: true, flexibleArgs: true, voidElements: true})
   // var h = require('hyperscript')
 
   var start = process.hrtime()
-  for(var i = 0; i < 100000; i++)
-    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', className: ['c'], style: {color: 'orange'}}, h('span', h('i', 'she\nsells\nsea', 'shells by the sea shore'), h('i', {'eh': true})))
+  for(var i = 0; i < 1; i++)
+    var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', className: ['c'], style: {color: 'orange'}}, h('span', h('i', 'she\nsells\nsea', 'shells by the sea shore'), h('br'), h('i', {'eh': true})))
   prints(process.hrtime(start))
 
   prints(html)
