@@ -53,37 +53,37 @@ string or object with contents, and true otherwise.`, function (t) {
 
 test(`isObject should be true when supplied any object \
 other than array or fn and false otherwise.`, function (t) {
-  t.comment('{}')
+  t.comment(`{}`)
   t.ok(isObject({}))
 
-  t.comment('new Date()')
+  t.comment(`new Date()`)
   t.ok(isObject(new Date()))
 
-  t.comment('Object()')
+  t.comment(`Object()`)
   t.ok(isObject(Object()))
 
-  t.comment('Object([])')
+  t.comment(`Object([])`)
   t.notOk(isObject(Object([])))
 
-  t.comment('[]')
+  t.comment(`[]`)
   t.notOk(isObject([]))
 
-  t.comment("''")
-  t.notOk(isObject(''))
+  t.comment(`''`)
+  t.notOk(isObject(``))
 
-  t.comment('0')
+  t.comment(`0`)
   t.notOk(isObject(0))
 
-  t.comment('1')
+  t.comment(`1`)
   t.notOk(isObject(1))
 
-  t.comment('true')
+  t.comment(`true`)
   t.notOk(isObject(true))
 
-  t.comment('false')
+  t.comment(`false`)
   t.notOk(isObject(false))
 
-  t.comment('function() {}')
+  t.comment(`function() {}`)
   t.notOk(isObject(function() {}))
   t.end()
 })
