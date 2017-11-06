@@ -43,9 +43,9 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexib
 
     // Add attributes to tag.
     for (var i = 0, k, v, keys = Object.keys(attrs); (k = keys[i++], v = attrs[k]);) {
-      if ((k != 'style' && k != 'class' && k != 'className') || !isEmpty(v)) {
+      if (!isEmpty(v)) {
         if (attrsNewLine) el.push(nl)
-        el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join(' ') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
+        el.push(` ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v) : v}"`)
       }
     }
 
