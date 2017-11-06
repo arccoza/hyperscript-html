@@ -33,7 +33,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexib
       if (!isEmpty(sh.attrs.style))
         attrs.style = {...sh.attrs.style, ...attrs.style}
 
-      attrs = {...sh.attrs, ...attrs}
+      attrs = {...sh.attrs, ...attrs, className: null}
     }
 
     var el = []
@@ -43,7 +43,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true, flexib
 
     // Add attributes to tag.
     for (var i = 0, k, v, keys = Object.keys(attrs); (k = keys[i++], v = attrs[k]);) {
-      if ((k != 'style' && k != 'class') || !isEmpty(v)) {
+      if ((k != 'style' && k != 'class' && k != 'className') || !isEmpty(v)) {
         if (attrsNewLine) el.push(nl)
         el.push(` ${k}="${k == 'class' && !isEmpty(v) ? v.join(' ') : k == 'style' && !isEmpty(v) ? toStyleStr(v) : v}"`)
       }
