@@ -16,6 +16,11 @@
     "simple",
     "fast"
   ],
+  "scripts": {
+    "build": "node taskfile.js",
+    "test": "./run-test",
+    "bench": "./run-bench"
+  },
   "dependencies": {
     "zenhand": "^0.8.0"
   },
