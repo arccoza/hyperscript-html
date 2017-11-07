@@ -1,4 +1,4 @@
-var prints = console.log.bind(console)
+var print = console.log.bind(console)
 var printd = console.dir.bind(console)
 import {isEmpty, hyperflexible, flattened} from './utils.js'
 import {toStyleStr, zenhand} from 'zenhand'
@@ -24,7 +24,6 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true,
     // Merge all attrs from selector str and 2nd arg obj.
     if (typeof type === 'string') {
       var sh = zenhand(type)
-      sh.attrs.className = sh.attrs.className || []
 
       type = sh.tag
 
@@ -90,8 +89,8 @@ if (require && require.main === module) {
   var start = process.hrtime()
   for(var i = 0; i < 100000; i++)
     var html = h('div#bob.a.b.c[type=awe][style=background:red; color:green]', {hola: 'value', class: ['c', 'foo', 'bar'], className: ['bar', 'baz'], style: {color: 'orange'}}, h('span', h('i', 'she\nsells\nsea', 'shells by the sea shore'), h('br'), h('i', {'eh': true})))
-  prints(process.hrtime(start))
+  print(process.hrtime(start))
 
-  prints(html)
-  // prints(html.outerHTML)
+  print(html)
+  // print(html.outerHTML)
 }
