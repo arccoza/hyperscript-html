@@ -17,12 +17,12 @@
     "fast"
   ],
   "dependencies": {
-    "fly-rename": "^0.1.1",
     "zenhand": "file:/home/adrien/Projects/code/zenhand/"
   },
   "devDependencies": {
     "@taskr/babel": "^1.1.0",
     "@taskr/clear": "^1.1.0",
+    "fly-rename": "^0.1.1",
     "babel-core": "^6.25.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
