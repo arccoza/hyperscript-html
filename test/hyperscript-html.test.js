@@ -96,3 +96,35 @@ with or without a null options arg.`, function (t) {
 
   t.end()
 })
+
+test(`hyperscript`, function (t) {
+  let h = HyperScript()
+  let lipsum = 'Cupcake ipsum dolor sit amet fruitcake tart. Brownie icing jelly-o cake. Jelly cotton candy sweet roll candy cheesecake pudding lollipop jelly dessert.'
+  let expect =
+`<article
+ class="foo bar bar baz"
+ style="position:absolute; backgroundColor:#ff0000"
+ title="A title attribute">
+\t<h1>
+\t\tTitle
+\t</h1>
+\t<p>
+\t\t<span>
+\t\t\t${lipsum}
+\t\t</span>
+\t</p>
+</article>`
+
+  // t.comment(expect)
+  let result =
+    h('article', fix.props,
+      h('h1', 'Title'),
+      h('p',
+        h('span', lipsum)
+      )
+    )
+  // t.comment(result)
+  t.equal(result, expect)
+
+  t.end()
+})
