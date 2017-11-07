@@ -16,10 +16,10 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true,
 
   function hyperscript(type, attrs, ...children) {
     // Prep args, make defaults.
-    attrs = attrs || {}
-    attrs.class = attrs.class || []
-    attrs.className = attrs.className || []
-    attrs.style = attrs.style || {}
+    attrs = !attrs ? {} : {...attrs}
+    attrs.class = !attrs.class ? [] : [...attrs.class]
+    attrs.className = !attrs.className ? [] : [...attrs.className]
+    attrs.style = !attrs.style ? {} : {...attrs.style}
 
     // Merge all attrs from selector str and 2nd arg obj.
     if (typeof type === 'string') {
