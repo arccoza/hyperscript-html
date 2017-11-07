@@ -103,3 +103,16 @@ is not an object/dict or null, and call the wrapped fn with (2+) args.`, functio
   f2('div', {}, 1, 2)
   t.end()
 })
+
+test(`flattened should take an array with any arrangement \
+of values and nested arrays and call a fn with each item \
+as if from a flat list.`, function (t) {
+  let r = null
+  f = (acc, arr) => (flattened(arr, (i, v) => acc.push(v)), acc)
+
+  t.comment(JSON.stringify([1, 2, 3, [4, 5, [6, 7, [8]]]]))
+  r = f([], [1, 2, 3, [4, 5, [6, 7, [8]]]])
+
+  t.deepLooseEqual([1, 2, 3, 4, 5, 6, 7, 8], r)
+  t.end()
+})
