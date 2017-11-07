@@ -66,7 +66,9 @@ a properties object.`, function (t) {
   t.end()
 })
 
-test('Test flexible fn interface, should be equal with different child arg arrangements.', function (t) {
+test(`hyperscript should produce the same html with the same children \
+arranged in various arrays at various depths, in the same order, \
+with or without a null options arg.`, function (t) {
   let h = HyperScript()
   let r = Results(), results = r
   let expect =
