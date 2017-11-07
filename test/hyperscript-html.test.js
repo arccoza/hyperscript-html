@@ -6,8 +6,6 @@ const {HyperScript} = require('../lib/index')
 
 if(!module.parent) {
   test.createStream()
-    // .pipe(tapSpec())
-    // .pipe(tapNotify())
     .pipe(tapDiff())
     .pipe(process.stdout);
 }
@@ -24,18 +22,25 @@ let fix = {
   }
 }
 
+function Results() {
+  let ret = []
+  Object.defineProperty(ret, 'last', { get: function(v) { return this[this.length] } })
+  return Object.defineProperty(ret, 'more', { set: function(v) { this.push(v) } })
+}
 
-test('Test the most basic, single tag with no attrs or children, should be equal.', function (t) {
+
+test(`hyperscript should return a single tag when supplied with no \
+  args, null args, or empty args.`, function (t) {
   let h = HyperScript()
+  let r = Results(), results = r
   let expect =
 `<p>
 </p>`
 
-  let
-    a = h('p'),
-    b = h('p', null, null),
-    c = h('p', {}, []),
-    results = [a, b, c]
+  t.comment(expect)
+  r.more = h('p')
+  r.more = h('p', null, null)
+  r.more = h('p', {}, [])
 
   for (let r of results)
     t.equal(r, expect)
@@ -43,7 +48,8 @@ test('Test the most basic, single tag with no attrs or children, should be equal
   t.end()
 })
 
-test('Test attrs handling, should be equal.', function (t) {
+test(`hyperscript should return a single tag with attrs, when supplied \
+a properties object.`, function (t) {
   let h = HyperScript()
   let expect =
 `<p
@@ -52,6 +58,7 @@ test('Test attrs handling, should be equal.', function (t) {
  title="A title attribute">
 </p>`
 
+  t.comment(expect)
   let result = h('p', fix.props)
 
   t.equal(result, expect)
@@ -61,6 +68,7 @@ test('Test attrs handling, should be equal.', function (t) {
 
 test('Test flexible fn interface, should be equal with different child arg arrangements.', function (t) {
   let h = HyperScript()
+  let r = Results(), results = r
   let expect =
 `<div>
 \tText A.
@@ -69,20 +77,17 @@ test('Test flexible fn interface, should be equal with different child arg arran
 \tText D.
 </div>`
 
-  let
-    a = h('div', null, 'Text A.', 'Text B.', 'Text C.', 'Text D.'),
-    b = h('div', 'Text A.', 'Text B.', 'Text C.', 'Text D.'),
-    c = h('div', null, ['Text A.', 'Text B.', 'Text C.', 'Text D.']),
-    d = h('div', ['Text A.', 'Text B.', 'Text C.', 'Text D.']),
-    e = h('div', null, 'Text A.', ['Text B.', 'Text C.'], 'Text D.'),
-    f = h('div', 'Text A.', ['Text B.', 'Text C.'], 'Text D.'),
-    g = h('div', null, ['Text A.', ['Text B.', ['Text C.', ['Text D.']]]]),
-    i = h('div', ['Text A.', ['Text B.', ['Text C.', ['Text D.']]]]),
-    j = h('div', null, ['Text A.'], ['Text B.'], ['Text C.'], ['Text D.']),
-    k = h('div', ['Text A.'], ['Text B.'], ['Text C.'], ['Text D.']),
-    results = [a, b, c, d, e, f, g, i, j, k]
-
-  // print(k)
+  t.comment(expect)
+  r.more = h('div', null, 'Text A.', 'Text B.', 'Text C.', 'Text D.')
+  r.more = h('div', 'Text A.', 'Text B.', 'Text C.', 'Text D.')
+  r.more = h('div', null, ['Text A.', 'Text B.', 'Text C.', 'Text D.'])
+  r.more = h('div', ['Text A.', 'Text B.', 'Text C.', 'Text D.'])
+  r.more = h('div', null, 'Text A.', ['Text B.', 'Text C.'], 'Text D.')
+  r.more = h('div', 'Text A.', ['Text B.', 'Text C.'], 'Text D.')
+  r.more = h('div', null, ['Text A.', ['Text B.', ['Text C.', ['Text D.']]]])
+  r.more = h('div', ['Text A.', ['Text B.', ['Text C.', ['Text D.']]]])
+  r.more = h('div', null, ['Text A.'], ['Text B.'], ['Text C.'], ['Text D.'])
+  r.more = h('div', ['Text A.'], ['Text B.'], ['Text C.'], ['Text D.'])
 
   for (let r of results)
     t.equal(r, expect)
