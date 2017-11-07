@@ -17,8 +17,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true,
   function hyperscript(type, attrs, ...children) {
     // Prep args, make defaults.
     attrs = !attrs ? {} : {...attrs}
-    attrs.class = !attrs.class ? [] : [...attrs.class]
-    attrs.className = !attrs.className ? [] : [...attrs.className]
+    attrs.class = [...(attrs.class || []), ...(attrs.className || [])]
     attrs.style = !attrs.style ? {} : {...attrs.style}
 
     // Merge all attrs from selector str and 2nd arg obj.
@@ -26,9 +25,6 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true,
       var sh = zenhand(type)
 
       type = sh.tag
-
-      if (!isEmpty(attrs.className))
-        attrs.class = [...attrs.class, ...attrs.className]
 
       if (!isEmpty(sh.attrs.class))
         attrs.class = [...sh.attrs.class, ...attrs.class]
