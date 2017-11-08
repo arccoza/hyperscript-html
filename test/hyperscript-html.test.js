@@ -24,7 +24,7 @@ let fix = {
 
 function Results() {
   let ret = []
-  Object.defineProperty(ret, 'last', { get: function(v) { return this[this.length] } })
+  Object.defineProperty(ret, 'last', { get: function(v) { return this[this.length - 1] } })
   return Object.defineProperty(ret, 'more', { set: function(v) { this.push(v) } })
 }
 
