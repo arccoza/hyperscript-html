@@ -14,8 +14,10 @@ function isEmpty(obj) {
   return true
 }
 
+var isArray = Array.isArray
+
 function isObject(obj) {
-  return !Array.isArray(obj) && typeof obj != 'function' && obj === Object(obj)
+  return obj != null && !isArray(obj) && typeof obj === 'object'
 }
 
 // A wrapper function that provides a flexible arg interface for hyperscript.
@@ -36,4 +38,4 @@ function flattened(arr, fn) {
   }
 }
 
-export {isEmpty, isObject, hyperflexible, flattened}
+export {isEmpty, isArray, isObject, hyperflexible, flattened}
