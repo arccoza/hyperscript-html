@@ -2,7 +2,7 @@ const Taskr = require('taskr');
 const print = console.log.bind(console)
 
 const src = {
-  module: 'lib/**/*.es6'
+  es: 'lib/**/*.es6'
 }
 
 exports.clean = function*(task) {
@@ -11,7 +11,7 @@ exports.clean = function*(task) {
 
 exports.esm2cjs = function*(task) {
   yield task
-    .source(src.module)
+    .source(src.es)
     .babel()
     .rename((file) => {
       file.dirname = ''
