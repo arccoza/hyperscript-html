@@ -4,8 +4,13 @@ var hasOwnProperty = Object.prototype.hasOwnProperty
 
 function isEmpty(obj) {
   if (obj) {
-    if (obj.length || obj.size)
+    let len = obj.length
+    len = len == null ? obj.size : len
+
+    if (len)
       return false
+    else if (len === 0)
+      return true
 
     for (var k in obj)
       return false
