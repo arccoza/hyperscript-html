@@ -1,7 +1,7 @@
 const test = require('tape')
 const print = console.log.bind(console)
 const tapDiff = require('tap-diff')
-const {isEmpty, isObject, hyperflexible, flattened} = require('../lib/utils')
+const {isEmpty, isDict, hyperflexible, flattened} = require('../lib/utils')
 
 
 if(!module.parent) {
@@ -51,40 +51,40 @@ string or object with contents, and true otherwise.`, function (t) {
   t.end()
 })
 
-test(`isObject should be true when supplied any object \
+test(`isDict should be true when supplied any object \
 other than array or fn and false otherwise.`, function (t) {
   t.comment(`{}`)
-  t.ok(isObject({}))
+  t.ok(isDict({}))
 
   t.comment(`new Date()`)
-  t.ok(isObject(new Date()))
+  t.ok(isDict(new Date()))
 
   t.comment(`Object()`)
-  t.ok(isObject(Object()))
+  t.ok(isDict(Object()))
 
   t.comment(`Object([])`)
-  t.notOk(isObject(Object([])))
+  t.notOk(isDict(Object([])))
 
   t.comment(`[]`)
-  t.notOk(isObject([]))
+  t.notOk(isDict([]))
 
   t.comment(`''`)
-  t.notOk(isObject(``))
+  t.notOk(isDict(``))
 
   t.comment(`0`)
-  t.notOk(isObject(0))
+  t.notOk(isDict(0))
 
   t.comment(`1`)
-  t.notOk(isObject(1))
+  t.notOk(isDict(1))
 
   t.comment(`true`)
-  t.notOk(isObject(true))
+  t.notOk(isDict(true))
 
   t.comment(`false`)
-  t.notOk(isObject(false))
+  t.notOk(isDict(false))
 
   t.comment(`function() {}`)
-  t.notOk(isObject(function() {}))
+  t.notOk(isDict(function() {}))
   t.end()
 })
 
