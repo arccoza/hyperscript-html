@@ -17,12 +17,18 @@ function isEmpty(obj) {
 var isArray = Array.isArray
 
 function isObject(obj) {
+  return obj != null && typeof obj === 'object'
+}
+
+function isDict(obj) {
   return obj != null && !isArray(obj) && typeof obj === 'object'
 }
 
+var isMap = isDict
+
 // A wrapper function that provides a flexible arg interface for hyperscript.
 function hyperflexible(fn, a, b, ...c) {
-  if(b == null || isObject(b))
+  if(b == null || isDict(b))
     return fn(a, b, ...c)
 
   return fn(a, null, b, ...c)
@@ -38,4 +44,4 @@ function flattened(arr, fn) {
   }
 }
 
-export {isEmpty, isArray, isObject, hyperflexible, flattened}
+export {isEmpty, isArray, isObject, isDict, isMap, hyperflexible, flattened}
