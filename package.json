@@ -22,7 +22,7 @@
     "bench": "./run-bench"
   },
   "dependencies": {
-    "zenhand": "0.9.0"
+    "zenhand": "^1.0.1"
   },
   "devDependencies": {
     "@taskr/babel": "^1.1.0",
