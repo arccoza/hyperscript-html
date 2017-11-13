@@ -14,7 +14,11 @@
     "renderer",
     "generator",
     "simple",
-    "fast"
+    "fast",
+    "small",
+    "tiny",
+    "micro",
+    "terse"
   ],
   "scripts": {
     "build": "node taskfile.js",
