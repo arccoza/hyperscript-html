@@ -75,7 +75,18 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true,
   }
 }
 
-export {HyperScript}
+function wrap(opts, ...elements) {
+  let h = HyperScript(opts)
+  let ret = {}
+
+  for (let i = 0, e; e = elements[i++];) {
+    ret[e] = h.bind(null, e)
+  }
+
+  return ret
+}
+
+export {HyperScript, wrap}
 
 
 if (require && require.main === module) {
