@@ -9,7 +9,7 @@ var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'in
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
 function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
-  flexibleArgs=true, voidElements=true}={}) {
+  flexibleArgs=true, voidElements=true, shortHand=true}={}) {
   tab = prettyPrint ? tab : ''
   nl = prettyPrint ? nl : ''  // nl: newline.
 
@@ -22,7 +22,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
     attrs.style = !attrs.style ? {} : {...attrs.style}
 
     // Merge all attrs from selector str and 2nd arg obj.
-    if (typeof type === 'string') {
+    if (shortHand && typeof type === 'string') {
       var sh = zenhand(type)
 
       type = sh.tag
