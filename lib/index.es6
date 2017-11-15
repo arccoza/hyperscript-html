@@ -1,3 +1,4 @@
+'use strict'
 var print = console.log.bind(console)
 var printd = console.dir.bind(console)
 import {isEmpty, hyperflexible, flattened} from './utils.js'
