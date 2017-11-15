@@ -13,4 +13,11 @@ if (require && require.main === module) {
 
   print(html)
   // print(html.outerHTML)
+
+  var {div, h1, p, i} = wrap({'div': 'div', 'h1': 'h1', 'p': 'p', 'i': 'i'}, {prettyPrint: true})
+  var start = process.hrtime()
+  for(var j = 0; j < 100000; j++)
+    var html = div(h1('Title'), p('sdfklsjfaksld jjf lksdjfkl', i(' greets '), 'asdf sddf'))
+  print(process.hrtime(start))
+  print(html)
 }

@@ -76,20 +76,20 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
   }
 }
 
-function wrap(opts, ...elements) {
-  if (typeof opts === 'string') {
-    elements.push(opts)
-    opts = {}
+function wrap(elements, opts={}) {
+  if (!elements || isEmpty(elements))
+    return
+
+  let h = HyperScript({...opts, shortHand: false})
+  let wrapped = {}
+
+  for (let k in elements) {
+    if (elements.hasOwnProperty(k)) {
+      wrapped[k] = h.bind(null, elements[k])
+    }
   }
 
-  let h = HyperScript({shortHand: false, ...opts})
-  let ret = {}
-
-  for (let i = 0, e; e = elements[i++];) {
-    ret[e] = h.bind(null, e)
-  }
-
-  return ret
+  return wrapped
 }
 
 export {HyperScript, wrap}
