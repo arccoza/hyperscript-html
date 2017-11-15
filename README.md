@@ -1,4 +1,7 @@
-# hyperscript-html
+[travis]:       https://travis-ci.org/arccoza/hyperscript-html
+[travis-img]:   https://img.shields.io/travis/arccoza/hyperscript-html.svg
+
+# hyperscript-html [![Travis Build Status][travis-img]][travis]
 Hyperscript-html provides a simple, fast, and lightweight hyperscript function to generate HTML.
 
 ## Example
