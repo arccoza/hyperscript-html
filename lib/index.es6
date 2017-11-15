@@ -77,7 +77,12 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
 }
 
 function wrap(opts, ...elements) {
-  let h = HyperScript(opts)
+  if (typeof opts === 'string') {
+    elements.push(opts)
+    opts = {}
+  }
+
+  let h = HyperScript({shortHand: false, ...opts})
   let ret = {}
 
   for (let i = 0, e; e = elements[i++];) {
