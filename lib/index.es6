@@ -8,10 +8,10 @@ import {toStyleStr, zenhand} from 'zenhand'
 var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
   'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
 
-function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true,
+function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
   flexibleArgs=true, voidElements=true}={}) {
-  tab = devMode ? tab : ''
-  nl = devMode ? nl : ''  // nl: newline.
+  tab = prettyPrint ? tab : ''
+  nl = prettyPrint ? nl : ''  // nl: newline.
 
   return flexibleArgs ? hyperflexible.bind(null, hyperscript) : hyperscript
 
@@ -54,7 +54,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, devMode=true,
 
     // Add children within element.
     if (!isEmpty(children)) {
-      if (devMode) {
+      if (prettyPrint) {
         // i: index, c: child.
         flattened(children, (i, c) => {
           el.push(nl + tab)

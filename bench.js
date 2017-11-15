@@ -3,7 +3,7 @@ var print = console.log.bind(console)
 
 
 if (require && require.main === module) {
-  var h = HyperScript({devMode: true, flexibleArgs: true, voidElements: true})
+  var h = HyperScript({prettyPrint: true, flexibleArgs: true, voidElements: true})
   // var h = require('hyperscript')
 
   var start = process.hrtime()
