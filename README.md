@@ -51,3 +51,17 @@ div({id: 'id', class: ['cls', 'cls2'], style: {backgroundColor: '#ff0000', posit
 	</p>
 </div>
 ```
+
+## API
+
+### HyperScript([options])
+
+The `hyperscript` constructor, takes optional options object argument, returns a `hyperscript` function.
+
+### hyperscript(tag[, attrs[, ...children]])
+
+The `hyperscript` function returned from the `HyperScript` constructor, takes a required tag name (eg. `'div'`), and optional attributes object, and optional children. The children can be added as an array or multiple arguments, or a combination of arrays and arguments.
+
+### wrap(elements[, options])
+
+The wrap function creates shorthand `hyperscript` functions. It takes an object of elements with mapping `function name : element tag` (eg. `{div: 'div', BOX: 'div}`), and an optional options object (the same options that `HyperScript` takes). It returns an object of bound shorthand hyperscript functions.
