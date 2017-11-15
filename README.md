@@ -58,10 +58,49 @@ div({id: 'id', class: ['cls', 'cls2'], style: {backgroundColor: '#ff0000', posit
 
 The `hyperscript` constructor, takes optional options object argument, returns a `hyperscript` function.
 
+```js
+var h = HyperScript()
+
+// or with options
+var h = HyperScript({tab:'\t', nl:'\n', attrsNewLine:true, prettyPrint:true,
+  flexibleArgs:true, voidElements:true, shortHand:true})
+```
+
 ### hyperscript(tag[, attrs[, ...children]])
 
 The `hyperscript` function returned from the `HyperScript` constructor, takes a required tag name (eg. `'div'`), and optional attributes object, and optional children. The children can be added as an array or multiple arguments, or a combination of arrays and arguments.
 
+```js
+// tag
+h('div')
+
+// tag and attributes
+h('div', {id: 'id', class: ['cls']})
+
+// If the `shortHand` option is `true` (default),
+// you can supply a CSS selector like string for the tag
+// and the values will be extracted to their respective attributes.
+h('div#id.cls[attr1=val][attr2]')
+
+// tag with child arguments
+h('div', 'hello', h('b', 'world'))
+
+// tag with child array
+h('div', ['hello', h('b', 'world')])
+
+// tag with attributes and child arguments
+h('div', {class: ['cls']}, 'hello', h('b', 'world'))
+```
+
 ### wrap(elements[, options])
 
 The wrap function creates shorthand `hyperscript` functions. It takes an object of elements with mapping `function name : element tag` (eg. `{div: 'div', BOX: 'div}`), and an optional options object (the same options that `HyperScript` takes). It returns an object of bound shorthand hyperscript functions.
+
+```js
+var {box, h1, p} = wrap({box: 'div', h1: 'h1', p: 'p'})
+
+box(
+  h1('Title'),
+  p('Content'),
+)
+```
