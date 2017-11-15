@@ -23,7 +23,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
 
     // Merge all attrs from selector str and 2nd arg obj.
     if (shortHand && typeof type === 'string') {
-      var sh = zenhand(type)
+      var sh = zenhand(type, {changeStyleCase:true})
 
       type = sh.tag
 
@@ -45,7 +45,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
     for (var i = 0, k, v, keys = Object.keys(attrs); k = keys[i++], v = attrs[k], k;) {
       if (!isEmpty(v)) {
         if (attrsNewLine) el.push(nl)
-        el.push(` ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v) : v}"`)
+        el.push(` ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v, 'camel', 'kebab') : v}"`)
       }
     }
 
