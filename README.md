@@ -1,5 +1,5 @@
 # hyperscript-html
-Hyperscript-html provides a simple, fast, and lighweight hyperscript function to generate HTML.
+Hyperscript-html provides a simple, fast, and lightweight hyperscript function to generate HTML.
 
 ## Example
 
@@ -7,6 +7,8 @@ Hyperscript-html provides a simple, fast, and lighweight hyperscript function to
 ```js
 var {HyperScript, wrap} = require('hyperscript-html')
 // import {HyperScript, wrap} from 'hyperscript-html'  // If you're using es modules.
+
+var h = HyperScript()
 
 var html = 
 h('div#id.cls.cls2[attr1=val1][style=background-color:#ff0000; position:relative]',
