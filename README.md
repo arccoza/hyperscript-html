@@ -104,3 +104,15 @@ box(
   p('Content'),
 )
 ```
+
+### options object
+
+**Option** | **Default value** | **Description**
+---:|:---|:---
+`tab` | `'\t'` | What to use as the tab.
+`nl` | `'\n'` | What to use as the line break.
+`prettyPrint` | `true` | Format the HTML output nicely with newlines and tabs, set to `false` for faster rendering.
+`attrsNewLine` | `true` | Put attributes on a new line when `prettyPrint` is `true`.
+`shortHand` | `true`, always `false` for `wrap` fn | Use CSS like selector syntax in tag names for shorthand id, class and attributes values. Set to `false` for faster rendering.
+`voidElements` | `true` | Leave the closing tag off of empty void elements.
+`flexibleArgs` | `true` | Make the hyperscript functions interface flexible, if `false` you must provide a value for attributes argument or `null` if you supply children (eg. `h('div', null, 'child text')`.
