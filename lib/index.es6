@@ -41,11 +41,8 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
 
     // Add attributes to tag.
     for (var i = 0, k, v, keys = Object.keys(attrs); k = keys[i++], v = attrs[k], k;) {
-      if (!isEmpty(v)) {
-        // if (attrsNewLine) el.push(nl)
-        // el.push(` ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v, 'camel', 'kebab') : v}"`)
-        el += `${attrsNewLine ? nl : ''} ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v, 'camel', 'kebab') : v}"`
-      }
+      if (isEmpty(v)) continue
+      el += `${attrsNewLine ? nl : ''} ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v, 'camel', 'kebab') : v}"`
     }
 
     // End opening tag.
@@ -56,8 +53,6 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
       if (prettyPrint) {
         // i: index, c: child.
         flattened(children, (i, c) => {
-          // el.push(nl + tab)
-          // el.push(c.split(nl).join(nl + tab))
           el += `${nl}${tab}${c.split(nl).join(nl + tab)}`
         })
       }
