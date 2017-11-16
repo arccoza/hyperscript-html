@@ -36,33 +36,28 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
       attrs = {...sh.attrs, ...attrs, className: null}
     }
 
-    var el = []
-
     // Start opening tag.
-    el.push(`<${type}`)
+    var el = `<${type}`
 
     // Add attributes to tag.
     for (var i = 0, k, v, keys = Object.keys(attrs); k = keys[i++], v = attrs[k], k;) {
-      if (!isEmpty(v)) {
-        if (attrsNewLine) el.push(nl)
-        el.push(` ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v, 'camel', 'kebab') : v}"`)
-      }
+      if (isEmpty(v)) continue
+      el += `${attrsNewLine ? nl : ''} ${k}="${k == 'class' ? v.join(' ') : k == 'style' ? toStyleStr(v, 'camel', 'kebab') : v}"`
     }
 
     // End opening tag.
-    el.push('>')
+    el += '>'
 
     // Add children within element.
     if (!isEmpty(children)) {
       if (prettyPrint) {
         // i: index, c: child.
         flattened(children, (i, c) => {
-          el.push(nl + tab)
-          el.push(c.split(nl).join(nl + tab))
+          el += `${nl}${tab}${c.split(nl).join(nl + tab)}`
         })
       }
       else {
-        flattened(children, (i, c) => el.push(c))
+        flattened(children, (i, c) => el += c)
       }
     }
 
@@ -70,9 +65,9 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
     // Check for empty void-elements, and leave off the closing tag.
     // if option `voidElements=true`.
     if (!isEmpty(children) || (!voidElements || special.indexOf(type) == -1))
-      el.push(`${nl}</${type}>`)
+      el += `${nl}</${type}>`
 
-    return el.join('')
+    return el
   }
 }
 
