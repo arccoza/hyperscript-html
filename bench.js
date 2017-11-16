@@ -20,4 +20,6 @@ if (require && require.main === module) {
     var html = div(h1('Title'), p('sdfklsjfaksld jjf lksdjfkl', i(' greets '), 'asdf sddf'))
   print(process.hrtime(start))
   print(html)
+
+  print(process.memoryUsage())
 }
