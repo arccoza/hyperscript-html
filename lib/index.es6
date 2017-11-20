@@ -5,8 +5,10 @@ import {isEmpty, hyperflexible, flattened} from './utils.js'
 import {toStyleStr, zenhand} from 'zenhand'
 
 
-var special = ['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
-  'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
+var special = {
+  'area': true, 'base': true, 'br': true, 'col': true, 'command': true, 'embed': true, 'hr': true, 'img': true, 'input': true,
+  'keygen': true, 'link': true, 'meta': true, 'param': true, 'source': true, 'track': true, 'wbr': true
+}
 
 function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
   flexibleArgs=true, voidElements=true, shortHand=true}={}) {
@@ -62,7 +64,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
       }
     }
     // Check for empty void-elements, and leave off the closing tag.
-    else if (voidElements && special.indexOf(type) !== -1) {
+    else if (voidElements && special[type]) {
       return el
     }
 
