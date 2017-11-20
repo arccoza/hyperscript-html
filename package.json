@@ -5,7 +5,7 @@
   "main": "lib/index",
   "repository": "https://github.com/arccoza/hyperscript-html",
   "bugs": "https://github.com/arccoza/hyperscript-html/issues",
-  "author": "Adrien <adrien@arccoza.com>",
+  "author": "Adrien de Pierres <adrien@arccoza.com>",
   "license": "MIT",
   "keywords": [
     "hyperscript",
