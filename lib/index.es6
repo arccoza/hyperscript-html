@@ -61,12 +61,13 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
         flattened(children, (i, c) => el += c)
       }
     }
+    // Check for empty void-elements, and leave off the closing tag.
+    else if (voidElements && special.indexOf(type) !== -1) {
+      return el
+    }
 
     // Add closing tag.
-    // Check for empty void-elements, and leave off the closing tag.
-    // if option `voidElements=true`.
-    if (!isEmpty(children) || (!voidElements || special.indexOf(type) == -1))
-      el += `${nl}</${type}>`
+    el += `${nl}</${type}>`
 
     return el
   }
