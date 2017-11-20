@@ -19,6 +19,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
     // Prep args, make defaults.
     attrs = !attrs ? {} : {...attrs}
     attrs.class = [...(attrs.class || []), ...(attrs.className || [])]
+    attrs.className = null
     attrs.style = !attrs.style ? {} : {...attrs.style}
 
     // Merge all attrs from selector str and 2nd arg obj.
@@ -33,7 +34,7 @@ function HyperScript({tab='\t', nl='\n', attrsNewLine=true, prettyPrint=true,
       if (!isEmpty(sh.attrs.style))
         attrs.style = {...sh.attrs.style, ...attrs.style}
 
-      attrs = {...sh.attrs, ...attrs, className: null}
+      attrs = {...sh.attrs, ...attrs}
     }
 
     // Start opening tag.
