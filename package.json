@@ -31,5 +31,11 @@
   "devDependencies": {
     "tap-diff": "^0.1.1",
     "tape": "^4.8.0"
-  }
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "src/"
+  ]
 }
