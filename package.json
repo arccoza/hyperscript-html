@@ -1,6 +1,6 @@
 {
   "name": "hyperscript-html",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A fast, simple, hyperscript implementation for generating HTML.",
   "main": "src/index",
   "repository": "https://github.com/arccoza/hyperscript-html",
@@ -26,7 +26,7 @@
     "bench": "./run-bench"
   },
   "dependencies": {
-    "zenhand": "^1.0.1"
+    "zenhand": "^2.0.0"
   },
   "devDependencies": {
     "tap-diff": "^0.1.1",

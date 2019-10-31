@@ -375,7 +375,7 @@ xtend@~4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
-zenhand@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/zenhand/-/zenhand-1.0.1.tgz#e5e8ea418dcaa368b66edc166e197c52aa8744cd"
-  integrity sha512-LeTn5uH5kCzKaPEb0ybUaiwJyUo6pSyrhoxqDUwOCfSRTJLz1EiBymF6rakJFGQfLbqMxnbpTVWVvStZRLzMOA==
+zenhand@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/zenhand/-/zenhand-2.0.0.tgz#a82c0b3b14016da1888f6e3f38647fe06ad7aa21"
+  integrity sha512-V5f/NlynoAFc+dRU/+uJTgf4vox3yHfJlnvP5BAJ6sZFNR2RTpyUMcUDBklTDHo6YiZhwj6WzZeOs+FOcMdq2A==
