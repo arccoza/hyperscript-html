@@ -21,7 +21,7 @@
     "terse"
   ],
   "scripts": {
-    "build": "node taskfile.js",
+    "build": "",
     "test": "./run-test",
     "bench": "./run-bench"
   },
