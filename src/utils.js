@@ -1,5 +1,5 @@
 'use strict'
-var print = console.log.bind(console)
+
 var hasOwnProperty = Object.prototype.hasOwnProperty
 
 
@@ -50,4 +50,4 @@ function flattened(arr, fn) {
   }
 }
 
-export {isEmpty, isArray, isObject, isDict, isMap, hyperflexible, flattened}
+module.exports = {isEmpty, isArray, isObject, isDict, isMap, hyperflexible, flattened}

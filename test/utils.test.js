@@ -1,7 +1,7 @@
 const test = require('tape')
 const print = console.log.bind(console)
 const tapDiff = require('tap-diff')
-const {isEmpty, isDict, hyperflexible, flattened} = require('../lib/utils')
+const {isEmpty, isDict, hyperflexible, flattened} = require('../src/utils')
 
 
 if(!module.parent) {

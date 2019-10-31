@@ -1,7 +1,5 @@
 #!/bin/bash
 
-node taskfile.js
-
 for f in test/*.test.js
 do
   node $f

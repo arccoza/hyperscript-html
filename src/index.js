@@ -1,11 +1,9 @@
 'use strict'
-var print = console.log.bind(console)
-var printd = console.dir.bind(console)
-import {isEmpty, hyperflexible, flattened} from './utils.js'
-import {toStyleStr, zenhand} from 'zenhand'
+const {isEmpty, hyperflexible, flattened} = require('./utils.js')
+const {toStyleStr, zenhand} = require('zenhand')
 
 
-var special = {
+const special = {
   'area': true, 'base': true, 'br': true, 'col': true, 'command': true, 'embed': true, 'hr': true, 'img': true, 'input': true,
   'keygen': true, 'link': true, 'meta': true, 'param': true, 'source': true, 'track': true, 'wbr': true
 }
@@ -91,4 +89,4 @@ function wrap(elements, opts={}) {
   return wrapped
 }
 
-export {HyperScript, wrap}
+module.exports = {HyperScript, wrap}

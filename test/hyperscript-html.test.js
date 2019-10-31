@@ -1,7 +1,7 @@
 const test = require('tape')
 const print = console.log.bind(console)
 const tapDiff = require('tap-diff')
-const {HyperScript, wrap} = require('../lib/index')
+const {HyperScript, wrap} = require('../src/index')
 
 
 if(!module.parent) {

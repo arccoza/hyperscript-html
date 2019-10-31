@@ -1,4 +1,4 @@
-var {HyperScript, wrap} = require('./lib/index')
+var {HyperScript, wrap} = require('./src/index')
 var print = console.log.bind(console)
 
 
