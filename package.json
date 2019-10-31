@@ -29,16 +29,7 @@
     "zenhand": "^1.0.1"
   },
   "devDependencies": {
-    "@taskr/babel": "^1.1.0",
-    "@taskr/clear": "^1.1.0",
-    "babel-core": "^6.25.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "fly-rename": "^0.1.1",
-    "hyperscript": "^2.0.2",
     "tap-diff": "^0.1.1",
-    "tape": "^4.8.0",
-    "taskr": "^1.1.0"
+    "tape": "^4.8.0"
   }
 }
